@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using FluentValidation;
+using MediatR;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Npu.Application.Tokens.Generate;
 using Npu.Contracts.Tokens;
@@ -18,6 +19,7 @@ internal static class GenerateTokenEndpoint
     private async static Task<
         Results<
             Ok<GenerateTokenResponseDto>,
+            ValidationProblem,
             ProblemHttpResult
         >
     > PostAsync(
@@ -34,21 +36,17 @@ internal static class GenerateTokenEndpoint
 
             return TypedResults.Ok(responseDto);
         }
-        catch (OperationCanceledException)
+        catch (OperationCanceledException exception) when (exception.CancellationToken == cancellationToken)
         {
-            // Propagate exception to properly allow client request cancellation
             throw;
+        }
+        catch (ValidationException exception)
+        {
+            return exception.MapTo();
         }
         catch (Exception exception)
         {
-            //Activity.Current?.AddException(exception);
-            //Activity.Current?.SetStatus(ActivityStatusCode.Error);
-
-            //return TypedResults.Json(
-            //    exception.MapTo(dateTimeOffsetProvider),
-            //    statusCode: StatusCodes.Status500InternalServerError
-            //);
-            throw;
+            return exception.MapTo();
         }
     }
 }

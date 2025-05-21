@@ -16,12 +16,27 @@ internal class GenerateTokenHandler
 
     public Task<GenerateTokenCommandResult> Handle(GenerateTokenCommand command, CancellationToken cancellationToken)
     {
-        TokenId tokenId = command.TokenId ?? TokenId.New();
+        TokenId tokenId = command.Id switch
+        {
+            Guid id => new TokenId(id),
+            _ => TokenId.New()
+        };
+
+        Identification identification = new()
+        {
+            Email = command.Email,
+            FirstName = command.FirstName,
+            LastName = command.LastName
+        };
+
+        Permission[] permissions = [.. command.Permissions.Select(s => new Permission(s))];
+        Role[] roles = [.. command.Roles.Select(s => new Role(s))];
+
         Token generatedToken = _jwtTokenGenerator.GenerateToken(
             tokenId,
-            command.Identification,
-            command.Permissions,
-            command.Roles
+            identification,
+            permissions,
+            roles
         );
 
         return Task.FromResult(
@@ -29,7 +44,7 @@ internal class GenerateTokenHandler
             {
                 TokenId = tokenId,
                 Token = generatedToken,
-                Identification = command.Identification
+                Identification = identification
             }
         );
     }

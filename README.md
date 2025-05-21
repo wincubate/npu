@@ -3,9 +3,11 @@
 ## Considerations
 
 - Api Gateway and external Identity Provider
--- But need GenerateToken use case for example to work :-)
+-- But need GenerateToken use case for example to work
 
 - Clean Architecture
+
+- REST interface with RFC7807 errors
 
 - Minimal API due to speed
 
@@ -23,12 +25,12 @@
 
 - Azure Blob Storage (could be AWS S3 or similar)
 
+- No unit tests... ;-)
+
 ## TODO
 
-[Endpoint] attribute
+Create Otel MediatR pipeline
 
-Map ValidationException to Problem
-
-
+Generate token examples
 
 ... 

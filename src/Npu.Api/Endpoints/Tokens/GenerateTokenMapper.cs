@@ -1,6 +1,5 @@
 ﻿using Npu.Application.Tokens.Generate;
 using Npu.Contracts.Tokens;
-using Npu.Domain.Tokens;
 
 namespace Npu.Api.Endpoints.Tokens;
 
@@ -9,15 +8,12 @@ internal static class GenerateTokenMapper
     public static GenerateTokenCommand MapFrom(this GenerateTokenRequestDto requestDto)
         => new()
         {
-            TokenId = new TokenId(requestDto.Id ?? Guid.CreateVersion7()),
-            Identification = new()
-            { 
-                Email = requestDto.Email,
-                FirstName = requestDto.FirstName,
-                LastName = requestDto.LastName
-            },
-            Permissions = [..requestDto.Permissions.Select( s => new Permission( s ) )],
-            Roles = [.. requestDto.Roles.Select(s => new Role(s))],            
+            Id = requestDto.Id,
+            Email = requestDto.Email,
+            FirstName = requestDto.FirstName,
+            LastName = requestDto.LastName,
+            Permissions = requestDto.Permissions,
+            Roles  = requestDto.Roles       
         };
 
     public static GenerateTokenResponseDto MapTo(this GenerateTokenCommandResult commandResult) =>
