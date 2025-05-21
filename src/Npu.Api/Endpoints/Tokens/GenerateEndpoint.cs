@@ -1,42 +1,42 @@
-﻿using MediatR;
-using Microsoft.AspNetCore.Antiforgery;
+﻿using ErrorOr;
+using MediatR;
 using Microsoft.AspNetCore.Http.HttpResults;
-using Microsoft.Extensions.Options;
+using Npu.Api.Endpoints.Upload;
 using Npu.Application.Submissions.Upload;
+using Npu.Application.Tokens.Generate;
 using Npu.Contracts;
-using Npu.Infrastructure.Persistence.Blobs;
+using Npu.Contracts.Tokens;
 
-namespace Npu.Api.Endpoints.Upload;
+namespace Npu.Api.Endpoints.Tokens;
 
-internal static class UploadEndpoint
+internal static class GenerateEndpoint
 {
     internal static RouteHandlerBuilder RegisterUploadEndpointMappings(this WebApplication app)
         => app
-            .MapPost("/upload", PostAsync)
+            .MapPost("/generate", PostAsync)
             .Produces(StatusCodes.Status500InternalServerError)
-            //.WithOpenApi(GetConnectorOpenApi.Add)
             .WithOpenApi()
-            .DisableAntiforgery()
             ;
 
     private async static Task<
         Results<
-            Ok<UploadResponseDto>,
+            Ok<GenerateTokenResponseDto>,
             ValidationProblem
         >
     > PostAsync(
-        IFormFile fileBeingUploaded,
+        GenerateTokenRequestDto requestDto,
         ISender mediator,
         CancellationToken cancellationToken
     )
     {
         try
         {
-            await using UploadCommand command = fileBeingUploaded.MapFrom();
-            UploadCommandResult commandResult = await mediator.Send(command,cancellationToken);
-            UploadResponseDto responseDto = commandResult.MapTo();
-
-            return TypedResults.Ok(responseDto);
+            GenerateTokenCommand command = requestDto.MapFrom();
+            ErrorOr<GenerateTokenCommandResult> errorOrCommandResult = await mediator.Send(command, cancellationToken);
+            return errorOrCommandResult.Match(
+                onValue: commandResult => TypedResults.Ok(commandResult.MapTo()),
+                onError: error => TypedResults.Problem()
+            );
         }
         catch (OperationCanceledException)
         {
