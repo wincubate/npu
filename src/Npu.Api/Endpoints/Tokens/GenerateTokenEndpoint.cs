@@ -1,19 +1,16 @@
-﻿using ErrorOr;
-using MediatR;
+﻿using MediatR;
 using Microsoft.AspNetCore.Http.HttpResults;
-using Npu.Api.Endpoints.Upload;
-using Npu.Application.Submissions.Upload;
 using Npu.Application.Tokens.Generate;
-using Npu.Contracts;
 using Npu.Contracts.Tokens;
 
 namespace Npu.Api.Endpoints.Tokens;
 
-internal static class GenerateEndpoint
+internal static class GenerateTokenEndpoint
 {
-    internal static RouteHandlerBuilder RegisterUploadEndpointMappings(this WebApplication app)
+    internal static RouteHandlerBuilder Register(this WebApplication app)
         => app
-            .MapPost("/generate", PostAsync)
+            .MapPost("/tokens/generate", PostAsync)
+            .WithTags(nameof(Tokens))
             .Produces(StatusCodes.Status500InternalServerError)
             .WithOpenApi()
             ;
@@ -21,7 +18,7 @@ internal static class GenerateEndpoint
     private async static Task<
         Results<
             Ok<GenerateTokenResponseDto>,
-            ValidationProblem
+            ProblemHttpResult
         >
     > PostAsync(
         GenerateTokenRequestDto requestDto,
@@ -32,11 +29,10 @@ internal static class GenerateEndpoint
         try
         {
             GenerateTokenCommand command = requestDto.MapFrom();
-            ErrorOr<GenerateTokenCommandResult> errorOrCommandResult = await mediator.Send(command, cancellationToken);
-            return errorOrCommandResult.Match(
-                onValue: commandResult => TypedResults.Ok(commandResult.MapTo()),
-                onError: error => TypedResults.Problem()
-            );
+            GenerateTokenCommandResult commandResult = await mediator.Send(command, cancellationToken);
+            GenerateTokenResponseDto responseDto = commandResult.MapTo();
+
+            return TypedResults.Ok(responseDto);
         }
         catch (OperationCanceledException)
         {

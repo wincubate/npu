@@ -1,12 +1,11 @@
-﻿using ErrorOr;
-using MediatR;
+﻿using MediatR;
 using Npu.Application.Common.Interfaces.Tokens;
 using Npu.Domain.Tokens;
 
 namespace Npu.Application.Tokens.Generate;
 
 internal class GenerateTokenHandler
-    : IRequestHandler<GenerateTokenCommand, ErrorOr<GenerateTokenCommandResult>>
+    : IRequestHandler<GenerateTokenCommand, GenerateTokenCommandResult>
 {
     private readonly IJwtTokenGenerator _jwtTokenGenerator;
 
@@ -15,7 +14,7 @@ internal class GenerateTokenHandler
         _jwtTokenGenerator = jwtTokenGenerator;
     }
 
-    public Task<ErrorOr<GenerateTokenCommandResult>> Handle(GenerateTokenCommand command, CancellationToken cancellationToken)
+    public Task<GenerateTokenCommandResult> Handle(GenerateTokenCommand command, CancellationToken cancellationToken)
     {
         TokenId tokenId = command.TokenId ?? TokenId.New();
         Token generatedToken = _jwtTokenGenerator.GenerateToken(
@@ -26,14 +25,12 @@ internal class GenerateTokenHandler
         );
 
         return Task.FromResult(
-            ErrorOrFactory.From( 
-                new GenerateTokenCommandResult()
-                {
-                    TokenId = tokenId,
-                    Token = generatedToken,
-                    Identification = command.Identification
-                }
-            )
+            new GenerateTokenCommandResult()
+            {
+                TokenId = tokenId,
+                Token = generatedToken,
+                Identification = command.Identification
+            }
         );
     }
 }

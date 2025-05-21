@@ -13,7 +13,7 @@ public static class DependencyInjection
             .AddMediatR(cfg =>
             {
                 cfg.RegisterServicesFromAssembly(typeof(DependencyInjection).Assembly);
-                cfg.AddOpenBehavior(typeof(GenericValidationBehaviour<,>));
+                cfg.AddOpenBehavior(typeof(GenericValidationBehavior<,>));
             })
         ;
         return services;

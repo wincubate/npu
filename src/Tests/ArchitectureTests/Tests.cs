@@ -20,7 +20,7 @@ public class Tests
         _apiProject = typeof(Api.DependencyInjection).Assembly;
         _infrastructureProject = typeof(Infrastructure.DependencyInjection).Assembly;
         _applicationProject = typeof(Application.DependencyInjection).Assembly;
-        _domainProject = typeof(Class1).Assembly;
+        _domainProject = typeof(Token).Assembly;
 
         _architecture = new ArchLoader()
             .LoadAssemblies(

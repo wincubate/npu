@@ -1,10 +1,9 @@
-﻿using ErrorOr;
-using MediatR;
+﻿using MediatR;
 using Npu.Domain.Tokens;
 
 namespace Npu.Application.Tokens.Generate;
 
-public record class GenerateTokenCommand : IRequest<ErrorOr<GenerateTokenCommandResult>>
+public record class GenerateTokenCommand : IRequest<GenerateTokenCommandResult>
 {
     public TokenId? TokenId { get; init; }
     public required Identification Identification { get; init; }
