@@ -1,5 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using Npu.Application.Common.Interfaces.Time;
+using Npu.Application.Common.Time;
 
 namespace Npu.Infrastructure.Time;
 

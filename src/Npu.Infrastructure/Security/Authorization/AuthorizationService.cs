@@ -1,4 +1,5 @@
-﻿using Npu.Application.Common.Interfaces.Security;
+﻿using Npu.Application.Common.Security.Authorization;
+using Npu.Application.Common.Security.Policies;
 using Npu.Application.Common.Security.Requests;
 
 namespace Npu.Infrastructure.Security.Authorization;
@@ -6,17 +7,25 @@ namespace Npu.Infrastructure.Security.Authorization;
 internal class AuthorizationService : IAuthorizationService
 {
     private readonly IPrincipalProvider _principalProvider;
+    private readonly IPolicyChecker _policyChecker;
 
-    public AuthorizationService(IPrincipalProvider principalProvider)
+    public AuthorizationService(
+        IPrincipalProvider principalProvider,
+        IPolicyChecker policyChecker
+    )
     {
         _principalProvider = principalProvider;
+        _policyChecker = policyChecker;
     }
 
-    public void Authorize<T>(IAuthorizableRequest<T> request, AuthorizationRequirements requirements)
+    public void Authorize<T>(
+        IAuthorizableRequest<T> request,
+        AuthorizationRequirements requirements
+    )
     {
         Principal principal = _principalProvider.GetCurrent();
 
-        if (requirements.RequiredPermissions
+        if (requirements.Permissions
             .Except(principal.Permissions)
             .Any()
         )
@@ -25,7 +34,7 @@ internal class AuthorizationService : IAuthorizationService
             throw new AuthorizationException(message);
         }
 
-        if (requirements.RequiredRoles
+        if (requirements.Roles
             .Except(principal.Roles)
             .Any()
         )
@@ -34,15 +43,13 @@ internal class AuthorizationService : IAuthorizationService
             throw new AuthorizationException(message);
         }
 
-        //foreach (var policy in requiredPolicies)
-        //{
-        //    var authorizationAgainstPolicyResult = _policyEnforcer.Authorize(request, currentUser, policy);
-
-        //    if (authorizationAgainstPolicyResult.IsError)
-        //    {
-        //        return authorizationAgainstPolicyResult.Errors;
-        //    }
-        //}
-
+        foreach (PolicyName policy in requirements.Policies)
+        {
+            if( _policyChecker.Check(request, principal, policy) is false)
+            {
+                string message = "User does not comply with required policy";
+                throw new AuthorizationException(message);
+            }
+        }
     }
 }

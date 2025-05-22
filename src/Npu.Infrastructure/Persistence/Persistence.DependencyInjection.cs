@@ -1,5 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using Npu.Application.Common.Interfaces.Persistence.Blobs;
+using Npu.Application.Common.Persistence.Blobs;
 using Npu.Infrastructure.Persistence.Blobs;
 
 namespace Npu.Infrastructure.Persistence;

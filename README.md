@@ -26,10 +26,12 @@
 - Azure Blob Storage (could be AWS S3 or similar)
 
 - No unit tests... ;-)
+-- But a few architecture tests as these as important
+
 
 ## TODO
 
-Put Policy in AuthorizationRequirements and AuthorizationService
+Consider attributes members as "proper" lists?
 
 Make sure that Tokens/Security types are correctly located within
 either Domain or Infrastructure (not correct now!!)

@@ -1,7 +1,7 @@
 ﻿using Npu.Domain.Common;
 using System.Diagnostics.CodeAnalysis;
 
-namespace Npu.Domain.Tokens;
+namespace Npu.Application.Common.Security.Tokens;
 
 public readonly record struct TokenId : IStronglyTypedId<Guid>
 {

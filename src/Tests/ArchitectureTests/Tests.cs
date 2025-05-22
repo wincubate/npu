@@ -2,7 +2,7 @@ using ArchUnitNET.Domain;
 using ArchUnitNET.Fluent;
 using ArchUnitNET.Loader;
 using ArchUnitNET.xUnit;
-using Npu.Domain.Tokens;
+using Npu.Application.Common.Security.Tokens;
 using static ArchUnitNET.Fluent.ArchRuleDefinition;
 
 namespace Npu.Tests.ArchitectureTests;

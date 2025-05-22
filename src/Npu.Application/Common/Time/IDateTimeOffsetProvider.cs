@@ -1,4 +1,4 @@
-﻿namespace Npu.Application.Common.Interfaces.Time;
+﻿namespace Npu.Application.Common.Time;
 
 public interface IDateTimeOffsetProvider
 {

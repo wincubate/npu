@@ -1,4 +1,4 @@
-﻿namespace Npu.Application.Common.Interfaces.Persistence.Blobs;
+﻿namespace Npu.Application.Common.Persistence.Blobs;
 
 public record class Blob : IAsyncDisposable
 {

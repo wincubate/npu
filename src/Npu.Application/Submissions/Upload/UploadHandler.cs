@@ -1,6 +1,6 @@
 ﻿using MediatR;
-using Npu.Application.Common.Interfaces.Persistence.Blobs;
-using Npu.Application.Common.Interfaces.Time;
+using Npu.Application.Common.Persistence.Blobs;
+using Npu.Application.Common.Time;
 
 namespace Npu.Application.Submissions.Upload;
 

@@ -1,4 +1,5 @@
-﻿using Npu.Domain.Tokens;
+﻿using Npu.Application.Common.Security.Permissions;
+using Npu.Application.Common.Security.Roles;
 using System.Diagnostics.CodeAnalysis;
 
 namespace Npu.Infrastructure.Security.Authorization;

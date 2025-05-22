@@ -1,6 +1,8 @@
-﻿using Npu.Domain.Tokens;
+﻿using Npu.Application.Common.Security.Permissions;
+using Npu.Application.Common.Security.Roles;
+using Npu.Domain.Users;
 
-namespace Npu.Application.Common.Interfaces.Tokens;
+namespace Npu.Application.Common.Security.Tokens;
 
 public interface IJwtTokenGenerator
 {

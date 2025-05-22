@@ -3,7 +3,7 @@
 [AttributeUsage(AttributeTargets.Class)]
 public sealed class AuthorizeAttribute : Attribute
 {
-    public string? Permission { get; init; }
-    public string? Role { get; init; }
-    public string? Policy { get; init; }
+    public string? Permissions { get; init; }
+    public string? Roles { get; init; }
+    public string? Policies { get; init; }
 }

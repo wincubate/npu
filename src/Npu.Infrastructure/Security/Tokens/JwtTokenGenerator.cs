@@ -1,8 +1,10 @@
 ﻿using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
-using Npu.Application.Common.Interfaces.Time;
-using Npu.Application.Common.Interfaces.Tokens;
-using Npu.Domain.Tokens;
+using Npu.Application.Common.Security.Permissions;
+using Npu.Application.Common.Security.Roles;
+using Npu.Application.Common.Security.Tokens;
+using Npu.Application.Common.Time;
+using Npu.Domain.Users;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;

@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.DependencyInjection;
-using Npu.Application.Common.Interfaces.Security;
-using Npu.Application.Common.Interfaces.Tokens;
+using Npu.Application.Common.Security.Authorization;
+using Npu.Application.Common.Security.Tokens;
 using Npu.Infrastructure.Security.Authorization;
 using Npu.Infrastructure.Security.Tokens;
 
@@ -24,7 +24,7 @@ public static class DependencyInjection
             // Authorization
             .AddTransient<IPrincipalProvider, PrincipalProvider>()
             .AddSingleton<IAuthorizationService, AuthorizationService>()
-            .AddSingleton<IPolicyEnforcer, PolicyEnforcer>()
+            .AddSingleton<IPolicyChecker, PolicyChecker>()
             ;
 
         return services;

@@ -1,4 +1,4 @@
-﻿namespace Npu.Domain.Tokens;
+﻿namespace Npu.Domain.Users;
 
 public record class Identification
 {

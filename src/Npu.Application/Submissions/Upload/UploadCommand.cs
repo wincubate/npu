@@ -1,5 +1,5 @@
 ﻿using MediatR;
-using Npu.Application.Common.Interfaces.Persistence.Blobs;
+using Npu.Application.Common.Persistence.Blobs;
 
 namespace Npu.Application.Submissions.Upload;
 

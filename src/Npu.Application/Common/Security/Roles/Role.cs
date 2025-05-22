@@ -1,6 +1,6 @@
 ﻿using Npu.Domain.Common;
 
-namespace Npu.Domain.Tokens;
+namespace Npu.Application.Common.Security.Roles;
 
 public record class Role(string Value) : ValueObjectBase<string>(Value)
 {

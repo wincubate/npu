@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
-using Npu.Domain.Tokens;
+using Npu.Application.Common.Security.Permissions;
+using Npu.Application.Common.Security.Roles;
 using Npu.Domain.Users;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;

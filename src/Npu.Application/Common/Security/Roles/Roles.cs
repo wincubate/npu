@@ -1,6 +1,4 @@
-﻿using Npu.Domain.Tokens;
-
-namespace Npu.Application.Common.Security.Roles;
+﻿namespace Npu.Application.Common.Security.Roles;
 
 public static class Roles
 {
