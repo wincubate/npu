@@ -1,4 +1,6 @@
-﻿namespace Npu.Domain.Users;
+﻿using Npu.Domain.Common;
+
+namespace Npu.Domain.Users;
 
 public record class Identification
 {

@@ -33,6 +33,8 @@
 
 Consider attributes members as "proper" lists?
 
+Clean up seeding part / connection string
+
 Make sure that Tokens/Security types are correctly located within
 either Domain or Infrastructure (not correct now!!)
 

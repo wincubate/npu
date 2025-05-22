@@ -4,4 +4,3 @@ public interface IStronglyTypedId<TId>
 {
     TId Value { get; }
 }
-

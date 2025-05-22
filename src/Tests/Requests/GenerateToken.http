@@ -9,7 +9,7 @@ Content-Type: application/json
     "lastName": "Gulmann Henriksen",
     "email": "jesper@gulmann.dk",
     "permissions": [
-        "create:submission",
+        "create:submission", 
         "delete:submission",
         "get:submission"
     ],
@@ -18,4 +18,22 @@ Content-Type: application/json
     ]
 }
 
-###
+### eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiSmVzcGVyIiwiZmFtaWx5X25hbWUiOiJHdWxtYW5uIEhlbnJpa3NlbiIsImVtYWlsIjoiamVzcGVyQGd1bG1hbm4uZGsiLCJpZCI6IlRva2VuSWQgeyBWYWx1ZSA9IDAwMDAwMDAwLTAwMDAtMDAwMC0wMDAwLTExMTExMTExMTExMSB9IiwicGVybWlzc2lvbnMiOlsiY3JlYXRlOnN1Ym1pc3Npb24iLCJkZWxldGU6c3VibWlzc2lvbiIsImdldDpzdWJtaXNzaW9uIl0sImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IkFkbWluIiwiZXhwIjoxNzQ3OTQ0ODM4LCJpc3MiOiJOcHVTZXJ2aWNlIiwiYXVkIjoiTnB1U2VydmljZSJ9.F_K_x_XhZQbZforejwViksDoOq2Cgx0Vys94PIrv_EM
+
+POST {{host}}/tokens/generate
+Content-Type: application/json
+
+{
+    "id": "00000000-0000-0000-0000-222222222222",
+    "firstName": "Noah",
+    "lastName": "Kirk Gulmann",
+    "email": "noah@gulmann.dk",
+    "permissions": [
+        "create:submission", 
+        "delete:submission",
+        "get:submission"
+    ],
+    "roles": []
+}
+
+### eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiTm9haCIsImZhbWlseV9uYW1lIjoiS2lyayBHdWxtYW5uIiwiZW1haWwiOiJub2FoQGd1bG1hbm4uZGsiLCJpZCI6IlRva2VuSWQgeyBWYWx1ZSA9IDAwMDAwMDAwLTAwMDAtMDAwMC0wMDAwLTIyMjIyMjIyMjIyMiB9IiwicGVybWlzc2lvbnMiOlsiY3JlYXRlOnN1Ym1pc3Npb24iLCJkZWxldGU6c3VibWlzc2lvbiIsImdldDpzdWJtaXNzaW9uIl0sImV4cCI6MTc0Nzk0NDgwMCwiaXNzIjoiTnB1U2VydmljZSIsImF1ZCI6Ik5wdVNlcnZpY2UifQ.Bfa8fRTile-u4rnR-r_p6S-VN-x4vw1H5RQWP9ruU4g
