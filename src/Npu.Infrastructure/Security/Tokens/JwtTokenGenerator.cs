@@ -9,7 +9,7 @@ using System.Text;
 
 namespace Npu.Infrastructure.Security.Tokens;
 
-public class JwtTokenGenerator : IJwtTokenGenerator
+internal class JwtTokenGenerator : IJwtTokenGenerator
 {
     private readonly IDateTimeOffsetProvider _dateTimeOffsetProvider;
     private readonly JwtSettingsOptions _jwtSettings;

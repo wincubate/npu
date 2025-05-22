@@ -29,6 +29,13 @@
 
 ## TODO
 
+Put Policy in AuthorizationRequirements and AuthorizationService
+
+Make sure that Tokens/Security types are correctly located within
+either Domain or Infrastructure (not correct now!!)
+
+TokenId vs. IdentityId
+
 Create Otel MediatR pipeline
 
 Generate token examples

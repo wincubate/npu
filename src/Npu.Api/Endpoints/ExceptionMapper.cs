@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace Npu.Api.Endpoints;
 
-internal static class ValidationExceptionMapper
+internal static class ExceptionMapper
 {
     public static ValidationProblem MapTo(this ValidationException exception)
     {
