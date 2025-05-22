@@ -1,9 +1,6 @@
-using Microsoft.OpenApi.Models;
 using Npu.Api;
 using Npu.Api.Endpoints;
 using Npu.Api.Endpoints.Swagger;
-using Npu.Api.Endpoints.Tokens;
-using Npu.Api.Endpoints.Upload;
 using Npu.Application;
 using Npu.Infrastructure;
 using System.Diagnostics.CodeAnalysis;
