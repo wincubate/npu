@@ -3,13 +3,13 @@ using MediatR;
 
 namespace Npu.Application.Common.Validation;
 
-internal class GenericValidationBehavior<TRequest, TResponse> :
+internal class ValidationBehavior<TRequest, TResponse> :
     IPipelineBehavior<TRequest, TResponse>
     where TRequest : IRequest<TResponse>
 {
     private readonly IValidator<TRequest>? _validator;
 
-    public GenericValidationBehavior(IValidator<TRequest>? validator = null)
+    public ValidationBehavior(IValidator<TRequest>? validator = null)
     {
         _validator = validator;
     }

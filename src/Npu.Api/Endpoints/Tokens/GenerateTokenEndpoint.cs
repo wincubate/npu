@@ -3,6 +3,7 @@ using MediatR;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Npu.Application.Tokens.Generate;
 using Npu.Contracts.Tokens;
+using Npu.Infrastructure.Security.Authorization;
 
 namespace Npu.Api.Endpoints.Tokens;
 
@@ -20,6 +21,7 @@ internal static class GenerateTokenEndpoint
         Results<
             Ok<GenerateTokenResponseDto>,
             ValidationProblem,
+            UnauthorizedHttpResult,
             ProblemHttpResult
         >
     > PostAsync(
@@ -42,11 +44,15 @@ internal static class GenerateTokenEndpoint
         }
         catch (ValidationException exception)
         {
-            return exception.MapTo();
+            return exception.MapTo400();
+        }
+        catch (AuthorizationException exception)
+        {
+            return exception.MapTo401();
         }
         catch (Exception exception)
         {
-            return exception.MapTo();
+            return exception.MapTo500();
         }
     }
 }

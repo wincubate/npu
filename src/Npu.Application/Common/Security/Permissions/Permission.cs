@@ -1,6 +1,6 @@
 ﻿using Npu.Domain.Common;
 
-namespace Npu.Domain.Tokens;
+namespace Npu.Application.Common.Security.Permissions;
 
 public record class Permission(string Value) : ValueObjectBase<string>(Value)
 {

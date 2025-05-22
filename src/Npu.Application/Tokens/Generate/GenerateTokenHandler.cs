@@ -1,6 +1,8 @@
 ﻿using MediatR;
-using Npu.Application.Common.Interfaces.Tokens;
-using Npu.Domain.Tokens;
+using Npu.Application.Common.Security.Permissions;
+using Npu.Application.Common.Security.Roles;
+using Npu.Application.Common.Security.Tokens;
+using Npu.Domain.Users;
 
 namespace Npu.Application.Tokens.Generate;
 

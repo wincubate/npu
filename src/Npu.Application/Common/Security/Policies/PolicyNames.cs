@@ -2,5 +2,5 @@
 
 public static class PolicyNames
 {
-    public const string SelfOrAdmin = "SelfOrAdmin";
+    public static readonly PolicyName SelfOrAdmin = new("SelfOrAdmin");
 }

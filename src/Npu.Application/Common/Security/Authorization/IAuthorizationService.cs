@@ -1,6 +1,6 @@
 ﻿using Npu.Application.Common.Security.Requests;
 
-namespace Npu.Application.Common.Interfaces.Security;
+namespace Npu.Application.Common.Security.Authorization;
 
 public interface IAuthorizationService
 {

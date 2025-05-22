@@ -10,6 +10,7 @@ public static class DependencyInjection
     )
     {
         services
+            .AddHttpContextAccessor()
             .Configure<AzureBlobStorageOptions>(
                 configuration.GetSection(nameof(AzureBlobStorageOptions))
             )

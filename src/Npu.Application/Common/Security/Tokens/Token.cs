@@ -1,6 +1,6 @@
 ﻿using Npu.Domain.Common;
 
-namespace Npu.Domain.Tokens;
+namespace Npu.Application.Common.Security.Tokens;
 
 public record class Token(string value) : ValueObjectBase<string>(value)
 {

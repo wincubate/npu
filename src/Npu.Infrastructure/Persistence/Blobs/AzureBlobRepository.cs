@@ -1,7 +1,7 @@
 ﻿using Azure.Identity;
 using Azure.Storage.Blobs;
 using Microsoft.Extensions.Options;
-using Npu.Application.Common.Interfaces.Persistence.Blobs;
+using Npu.Application.Common.Persistence.Blobs;
 
 namespace Npu.Infrastructure.Persistence.Blobs;
 
