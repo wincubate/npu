@@ -2,7 +2,7 @@
 
 internal static class GetVersionEndpoint
 {
-    internal static WebApplication RegisterSwaggerEndpointMappings(this WebApplication app)
+    internal static WebApplication RegisterSwaggerEndpoint(this WebApplication app)
     {
         app.MapGet("/", GetSwaggerAsync);
 

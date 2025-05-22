@@ -1,6 +1,8 @@
 using Microsoft.OpenApi.Models;
 using Npu.Api;
+using Npu.Api.Endpoints;
 using Npu.Api.Endpoints.Swagger;
+using Npu.Api.Endpoints.Tokens;
 using Npu.Api.Endpoints.Upload;
 using Npu.Application;
 using Npu.Infrastructure;
@@ -10,8 +12,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services
     .AddPresentation(builder.Configuration)
-    .AddApplication()
     .AddInfrastructure()
+    .AddApplication()
     ;
 
 builder.Services.AddEndpointsApiExplorer();
@@ -28,8 +30,8 @@ app.UseSwagger();
 app.UseSwaggerUI();
 
 app
-    .RegisterSwaggerEndpointMappings()
-    .RegisterUploadEndpointMappings()
+    .RegisterSwaggerEndpoint()
+    .RegisterEndpointsFromAssembly()
     ;
 
 app.Run();

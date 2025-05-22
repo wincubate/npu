@@ -1,0 +1,21 @@
+@host = https://localhost:7044
+
+POST {{host}}/tokens/generate
+Content-Type: application/json
+
+{
+    "id": "00000000-0000-0000-0000-111111111111",
+    "firstName": "Jesper",
+    "lastName": "Gulmann Henriksen",
+    "email": "jesper@gulmann.dk",
+    "permissions": [
+        "create:submission",
+        "delete:submission",
+        "get:submission"
+    ],
+    "roles": [
+        "Admin"
+    ]
+}
+
+###

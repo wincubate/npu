@@ -10,7 +10,7 @@ namespace Npu.Api.Endpoints.Upload;
 
 internal static class UploadEndpoint
 {
-    internal static RouteHandlerBuilder RegisterUploadEndpointMappings(this WebApplication app)
+    internal static RouteHandlerBuilder Register(this WebApplication app)
         => app
             .MapPost("/upload", PostAsync)
             .Produces(StatusCodes.Status500InternalServerError)
@@ -26,8 +26,8 @@ internal static class UploadEndpoint
         >
     > PostAsync(
         IFormFile fileBeingUploaded,
-        CancellationToken cancellationToken,
-        ISender mediator
+        ISender mediator,
+        CancellationToken cancellationToken
     )
     {
         try

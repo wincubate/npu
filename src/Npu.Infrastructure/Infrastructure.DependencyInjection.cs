@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Npu.Infrastructure.Persistence;
+using Npu.Infrastructure.Security;
 using Npu.Infrastructure.Time;
 
 namespace Npu.Infrastructure;
@@ -11,6 +12,7 @@ public static class DependencyInjection
         services
             .AddPersistence()
             .AddTime()
+            .AddSecurity()
             ;
 
         return services;

@@ -2,6 +2,7 @@ using ArchUnitNET.Domain;
 using ArchUnitNET.Fluent;
 using ArchUnitNET.Loader;
 using ArchUnitNET.xUnit;
+using Npu.Domain.Tokens;
 using static ArchUnitNET.Fluent.ArchRuleDefinition;
 
 namespace Npu.Tests.ArchitectureTests;
@@ -19,7 +20,7 @@ public class Tests
         _apiProject = typeof(Api.DependencyInjection).Assembly;
         _infrastructureProject = typeof(Infrastructure.DependencyInjection).Assembly;
         _applicationProject = typeof(Application.DependencyInjection).Assembly;
-        _domainProject = typeof(Domain.Class1).Assembly;
+        _domainProject = typeof(Token).Assembly;
 
         _architecture = new ArchLoader()
             .LoadAssemblies(
