@@ -11,7 +11,7 @@ internal static class GetVotesEndpoint
 {
     internal static RouteHandlerBuilder Register(this WebApplication app)
         => app
-            .MapGet("/submissions/{submissionId:guid}/votes", GetAsync)
+            .MapGet("users/{userId:guid}/submissions/{submissionId:guid}/votes", GetAsync)
             .WithTags(nameof(Votes))
             .Produces(StatusCodes.Status200OK)
             .Produces(StatusCodes.Status400BadRequest)
@@ -29,13 +29,14 @@ internal static class GetVotesEndpoint
         >
     > GetAsync(
         ISender mediator,
+        Guid userId,
         Guid submissionId,
         CancellationToken cancellationToken
     )
     {
         try
         {
-            GetVotesQuery query = submissionId.MapFrom();
+            GetVotesQuery query = userId.MapFrom(submissionId);
             GetVotesQueryResult queryResult = await mediator.Send(query, cancellationToken);
             GetVotesResponseDto responseDto = queryResult.MapTo();
 

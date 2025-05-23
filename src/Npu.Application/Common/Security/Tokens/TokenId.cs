@@ -10,6 +10,8 @@ public readonly record struct TokenId : IStronglyTypedId<Guid>
     
     public required Guid Value { get; init; }
 
+    public override string ToString() => Value.ToString();
+
     [SetsRequiredMembers]
     public TokenId(Guid value)
     {

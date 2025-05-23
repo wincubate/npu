@@ -1,9 +1,12 @@
-﻿using MediatR;
+﻿using Npu.Application.Common.Security.Requests;
+using Npu.Domain.Users;
 
 namespace Npu.Application.Votes.Get;
 
-public record class GetVotesQuery : IRequest<GetVotesQueryResult>
+[Authorize(Roles = "Admin")]
+public record class GetVotesQuery : IAuthorizableRequest<GetVotesQueryResult>
 {
+    public IdentityId UserId { get; init; }
     public required Guid SubmissionId { get; init; }
 }
 

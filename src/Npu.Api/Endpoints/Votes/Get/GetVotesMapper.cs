@@ -6,10 +6,11 @@ namespace Npu.Api.Endpoints.Votes.Get;
 
 internal static class GetVotesMapper
 {
-    public static GetVotesQuery MapFrom(this Guid submissionId)
+    public static GetVotesQuery MapFrom(this Guid userId, Guid submissionId)
         => new()
         {
-            SubmissionId = submissionId,
+            UserId = new(userId),
+            SubmissionId = submissionId
         };
 
     public static GetVotesResponseDto MapTo(this GetVotesQueryResult queryResult) =>
