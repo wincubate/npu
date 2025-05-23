@@ -25,11 +25,15 @@
 
 - Azure Blob Storage (could be AWS S3 or similar)
 
+- Parts List should be imported / synchronized from external source / Cached
+
 - No unit tests... ;-)
 -- But a few architecture tests as these as important
 
 
 ## TODO
+
+Remove hardcoded HOST strings: 7044
 
 Consider attributes members as "proper" lists?
 
@@ -43,5 +47,7 @@ TokenId vs. IdentityId
 Create Otel MediatR pipeline
 
 Generate token examples
+
+EF Core missing Foreign Keys?
 
 ... 
