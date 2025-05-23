@@ -1,7 +1,7 @@
 ﻿using Npu.Application.Tokens.Generate;
 using Npu.Contracts.Tokens;
 
-namespace Npu.Api.Endpoints.Tokens;
+namespace Npu.Api.Endpoints.Tokens.Generate;
 
 internal static class GenerateTokenMapper
 {

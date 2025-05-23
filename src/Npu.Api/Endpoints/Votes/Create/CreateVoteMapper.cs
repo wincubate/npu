@@ -1,7 +1,7 @@
 ﻿using Npu.Application.Votes.Create;
 using Npu.Contracts.Votes;
 
-namespace Npu.Api.Endpoints.Votes;
+namespace Npu.Api.Endpoints.Votes.Create;
 
 internal static class CreateVoteMapper
 {

@@ -1,40 +1,43 @@
 ﻿using FluentValidation;
 using MediatR;
 using Microsoft.AspNetCore.Http.HttpResults;
-using Npu.Application.Tokens.Generate;
-using Npu.Contracts.Tokens;
+using Npu.Application.Votes.Get;
+using Npu.Contracts.Votes;
 using Npu.Infrastructure.Security.Authorization;
 
-namespace Npu.Api.Endpoints.Tokens;
+namespace Npu.Api.Endpoints.Votes.Get;
 
-internal static class GenerateTokenEndpoint
+internal static class GetVotesEndpoint
 {
     internal static RouteHandlerBuilder Register(this WebApplication app)
         => app
-            .MapPost("/tokens/generate", PostAsync)
-            .WithTags(nameof(Tokens))
+            .MapGet("/submissions/{submissionId:guid}/votes", GetAsync)
+            .WithTags(nameof(Votes))
+            .Produces(StatusCodes.Status200OK)
+            .Produces(StatusCodes.Status400BadRequest)
+            .Produces(StatusCodes.Status401Unauthorized)
             .Produces(StatusCodes.Status500InternalServerError)
             .WithOpenApi()
             ;
 
     private async static Task<
         Results<
-            Ok<GenerateTokenResponseDto>,
+            Ok<GetVotesResponseDto>,
             ValidationProblem,
             UnauthorizedHttpResult,
             ProblemHttpResult
         >
-    > PostAsync(
-        GenerateTokenRequestDto requestDto,
+    > GetAsync(
         ISender mediator,
+        Guid submissionId,
         CancellationToken cancellationToken
     )
     {
         try
         {
-            GenerateTokenCommand command = requestDto.MapFrom();
-            GenerateTokenCommandResult commandResult = await mediator.Send(command, cancellationToken);
-            GenerateTokenResponseDto responseDto = commandResult.MapTo();
+            GetVotesQuery query = submissionId.MapFrom();
+            GetVotesQueryResult queryResult = await mediator.Send(query, cancellationToken);
+            GetVotesResponseDto responseDto = queryResult.MapTo();
 
             return TypedResults.Ok(responseDto);
         }

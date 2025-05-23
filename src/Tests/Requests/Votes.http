@@ -1,0 +1,14 @@
+@host = https://localhost:7044
+
+POST {{host}}/submissions/0196fdc5-cd8e-7f7a-8ba4-adbbe684848b/votes
+Content-Type: application/json
+
+{
+    "userId": "00000000-0000-0000-0000-111111111111",
+    "creativityScore": "5",
+    "uniquenessScore": "4"
+}
+
+### Admin-only
+GET {{host}}/submissions/0196fdc5-cd8e-7f7a-8ba4-adbbe684848b/votes
+Accept-Type: application/json

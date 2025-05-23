@@ -1,4 +1,5 @@
-﻿using Npu.Application.Common.Persistence.Votes;
+﻿using Microsoft.EntityFrameworkCore;
+using Npu.Application.Common.Persistence.Votes;
 using Npu.Domain.Votes;
 using Npu.Infrastructure.Common.Persistence;
 
@@ -18,4 +19,9 @@ internal class VotesRepository : IVotesRepository
         await _context.Votes.AddAsync(vote, cancellationToken);
         await _context.SaveChangesAsync(cancellationToken);
     }
+    public async Task<Vote[]> GetAllBySubmissionId(Guid submissionId, CancellationToken cancellationToken) =>
+        await _context.Votes
+            .Where(vote => vote.SubmissionId == submissionId)
+            .ToArrayAsync(cancellationToken: cancellationToken)
+            ;
 }

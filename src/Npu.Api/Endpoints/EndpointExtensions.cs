@@ -1,5 +1,5 @@
 ﻿using FluentValidation;
-using Npu.Api.Endpoints.Tokens;
+using Npu.Api.Endpoints.Tokens.Generate;
 using System.Reflection;
 
 namespace Npu.Api.Endpoints;

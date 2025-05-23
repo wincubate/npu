@@ -5,7 +5,7 @@ using Npu.Application.Votes.Create;
 using Npu.Contracts.Votes;
 using Npu.Infrastructure.Security.Authorization;
 
-namespace Npu.Api.Endpoints.Votes;
+namespace Npu.Api.Endpoints.Votes.Create;
 
 internal static class CreateVotesEndpoint
 {
