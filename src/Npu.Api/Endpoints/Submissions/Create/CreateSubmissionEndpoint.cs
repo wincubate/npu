@@ -2,7 +2,8 @@
 using MediatR;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Npu.Application.Submissions.Create;
-using Npu.Contracts.Submissions;
+using Npu.Contracts.Submissions.Create;
+using Npu.Domain.Exceptions;
 using Npu.Infrastructure.Security.Authorization;
 
 namespace Npu.Api.Endpoints.Submissions.Create;
@@ -16,6 +17,7 @@ internal static class CreateSubmissionEndpoint
             .Produces(StatusCodes.Status201Created)
             .Produces(StatusCodes.Status400BadRequest)
             .Produces(StatusCodes.Status401Unauthorized)
+            .Produces(StatusCodes.Status404NotFound)
             .Produces(StatusCodes.Status500InternalServerError)
             .WithOpenApi()
             ;
@@ -25,6 +27,7 @@ internal static class CreateSubmissionEndpoint
             Created<CreateSubmissionResponseDto>,
             ValidationProblem,
             UnauthorizedHttpResult,
+            NotFound<string>,
             ProblemHttpResult
         >
     > PostAsync(
@@ -54,6 +57,10 @@ internal static class CreateSubmissionEndpoint
         catch (AuthorizationException exception)
         {
             return exception.MapTo401();
+        }
+        catch (NotFoundException exception)
+        {
+            return exception.MapTo404();
         }
         catch (Exception exception)
         {

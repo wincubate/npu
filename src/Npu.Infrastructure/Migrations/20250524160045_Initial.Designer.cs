@@ -12,7 +12,7 @@ using Npu.Infrastructure.Common.Persistence;
 namespace Npu.Infrastructure.Migrations
 {
     [DbContext(typeof(NpuDbContext))]
-    [Migration("20250524141750_Initial")]
+    [Migration("20250524160045_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -70,6 +70,10 @@ namespace Npu.Infrastructure.Migrations
                     b.Property<Guid>("Id")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<string>("BrickLinkItemNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
@@ -84,6 +88,10 @@ namespace Npu.Infrastructure.Migrations
 
                     b.Property<Guid>("PartId")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("PartName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Title")
                         .IsRequired()

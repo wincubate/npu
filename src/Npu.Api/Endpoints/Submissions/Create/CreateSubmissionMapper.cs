@@ -1,5 +1,5 @@
 ﻿using Npu.Application.Submissions.Create;
-using Npu.Contracts.Submissions;
+using Npu.Contracts.Submissions.Create;
 
 namespace Npu.Api.Endpoints.Submissions.Create;
 
@@ -13,7 +13,7 @@ internal static class CreateSubmissionMapper
             UserId = new(userId),
             Title = requestDto.Title,
             Description = requestDto.Description,
-            ItemNumber = requestDto.ItemNumber,
+            ItemNumber = requestDto.BrickLinkItemNumber
         };
 
     public static (string resource, CreateSubmissionResponseDto responseDto) MapTo(this CreateSubmissionCommandResult commandResult,
@@ -26,6 +26,13 @@ internal static class CreateSubmissionMapper
         {
             Id = commandResult.Submission.Id,
             UserId = commandResult.UserId,
+            Title = commandResult.Submission.Title,
+            Description = commandResult.Submission.Description,
+            ImageName = commandResult.Submission.ImageName,
+            ImageId = commandResult.Submission.ImageId,
+            PartId = commandResult.Submission.PartId,
+            BrickLinkItemNumber = commandResult.Submission.BrickLinkItemNumber,
+            PartName = commandResult.Submission.PartName,
             CreatedTime = commandResult.CreatedTime
         };
 

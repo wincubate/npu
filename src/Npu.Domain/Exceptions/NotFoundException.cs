@@ -1,7 +1,7 @@
 ﻿namespace Npu.Domain.Exceptions;
 
-public class NotFoundException(Guid id, string? message, Exception? innerException = null)
+public class NotFoundException(Guid? id, string? message, Exception? innerException = null)
     : Exception(message, innerException)
 {
-    public Guid Id { get; } = id;
+    public Guid? Id { get; } = id;
 }

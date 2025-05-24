@@ -2,7 +2,7 @@
 
 namespace Npu.Contracts.Votes.Get;
 
-public record class VoteDto
+public record class VoteResponseDto
 {
     [JsonPropertyName("userId")]
     public required Guid UserId { get; init; }

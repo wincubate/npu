@@ -2,5 +2,5 @@
 
 public record class GetVotesResponseDto
 {
-    public required IReadOnlyCollection<VoteDto> Votes { get; init; }
+    public required IReadOnlyCollection<VoteResponseDto> Votes { get; init; }
 }

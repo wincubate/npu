@@ -3,6 +3,7 @@ using MediatR;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Npu.Application.Votes.Create;
 using Npu.Contracts.Votes.Create;
+using Npu.Domain.Exceptions;
 using Npu.Infrastructure.Security.Authorization;
 
 namespace Npu.Api.Endpoints.Votes.Create;
@@ -15,6 +16,8 @@ internal static class CreateVotesEndpoint
             .WithTags(nameof(Votes))
             .Produces(StatusCodes.Status201Created)
             .Produces(StatusCodes.Status400BadRequest)
+            .Produces(StatusCodes.Status404NotFound)
+            .Produces(StatusCodes.Status409Conflict)
             .Produces(StatusCodes.Status500InternalServerError)
             .WithOpenApi()
             ;
@@ -24,6 +27,8 @@ internal static class CreateVotesEndpoint
             Created<CreateVoteResponseDto>,
             ValidationProblem,
             UnauthorizedHttpResult,
+            NotFound<string>,
+            Conflict<string>,
             ProblemHttpResult
         >
     > PostAsync(
@@ -53,6 +58,14 @@ internal static class CreateVotesEndpoint
         catch (AuthorizationException exception)
         {
             return exception.MapTo401();
+        }
+        catch (NotFoundException exception)
+        {
+            return exception.MapTo404();
+        }
+        catch (AlreadyExistsException exception)
+        {
+            return exception.MapTo409();
         }
         catch (Exception exception)
         {

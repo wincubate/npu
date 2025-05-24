@@ -19,7 +19,7 @@ internal static class GetVotesMapper
             Votes = [..queryResult.Votes.Select(MapTo)]
         };
 
-    private static VoteDto MapTo(this Vote vote) =>
+    private static VoteResponseDto MapTo(this Vote vote) =>
         new()
         {
             UserId = vote.UserId,

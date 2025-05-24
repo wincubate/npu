@@ -49,7 +49,9 @@ namespace Npu.Infrastructure.Migrations
                     ImageId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     ImageName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ImageUri = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    PartId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    PartId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    BrickLinkItemNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PartName = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {

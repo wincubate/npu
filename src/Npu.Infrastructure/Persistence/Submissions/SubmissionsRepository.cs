@@ -19,6 +19,22 @@ internal class SubmissionsRepository : ISubmissionsRepository
             .SingleOrDefaultAsync(submission => submission.Id == submissionId, cancellationToken)
             ;
 
+    public async Task<Submission[]> GetAllByUserIdAsync(Guid userId, CancellationToken cancellationToken) =>
+        await _context.Submissions
+            .Where(submission => submission.UserId == userId)
+            .ToArrayAsync(cancellationToken: cancellationToken)
+            ;
+
+    public async Task<Submission[]> GetAllByItemNameAsync(string itemName, CancellationToken cancellationToken) =>
+        await _context.Submissions
+            .Where(submission => submission.PartName.Contains(itemName))
+            .ToArrayAsync(cancellationToken: cancellationToken)
+            ;
+
+    public async Task<Submission[]> GetAllAsync(CancellationToken cancellationToken) =>
+        await _context.Submissions.ToArrayAsync(cancellationToken: cancellationToken)
+        ;
+
     public async Task AddAsync(Submission submission, CancellationToken cancellationToken)
     {
         await _context.AddAsync(submission, cancellationToken);

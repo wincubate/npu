@@ -9,7 +9,7 @@
 
 - REST interface with RFC7807 errors
 
-- Minimal API due to speed
+- .NET 9 with Minimal API due to speed
 
 - REPR Pattern
 
@@ -26,14 +26,16 @@
 - Azure Blob Storage (could be AWS S3 or similar)
 
 - Parts List should be imported / synchronized from external source / Cached
+-- Currently list is hardcoded
+-- For simplicity: Only a single part per submission. If there was a bit more time: one-to-many
 
 - No unit tests... ;-)
--- But a few architecture tests as these as important
+-- But a few architecture tests as these are also important
 
 
 ## TODO
 
-Check user exists in each handler!!
+Run architecture tests: Mappers should be internal
 
 Clean up Program.cs
 
@@ -42,18 +44,9 @@ Remember to set token expiration back to 60 minutes. :-)
 Image as separate identity? (same aggregate as Submission)
 GuidGenerator for Blob and other Ids?
 
-Remove unused usings
-
 Remove hardcoded HOST strings: 7044
 
-Consider attributes members as "proper" lists?
-
 Clean up seeding part / connection string
-
-Make sure that Tokens/Security types are correctly located within
-either Domain or Infrastructure (not correct now!!)
-
-Create Otel MediatR pipeline
 
 Generate token examples
 

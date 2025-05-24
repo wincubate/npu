@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace Npu.Contracts.Submissions;
+namespace Npu.Contracts.Submissions.Create;
 
 public record class CreateSubmissionRequestDto
 {
@@ -10,6 +10,6 @@ public record class CreateSubmissionRequestDto
     [JsonPropertyName("description")]
     public string? Description { get; init; }
 
-    [JsonPropertyName("itemNumber")]
-    public required string ItemNumber { get; init; }
+    [JsonPropertyName("brickLinkItemNumber")]
+    public required string BrickLinkItemNumber { get; init; }
 }

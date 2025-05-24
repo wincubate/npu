@@ -11,14 +11,15 @@ Content-Type: application/json
     "permissions": [
         "create:submission", 
         "delete:submission",
-        "get:submission"
+        "get:submission",
+        "upload:image"
     ],
     "roles": [
         "Admin"
     ]
 }
 
-### eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiSmVzcGVyIiwiZmFtaWx5X25hbWUiOiJHdWxtYW5uIEhlbnJpa3NlbiIsImVtYWlsIjoiamVzcGVyQGd1bG1hbm4uZGsiLCJpZCI6IjAwMDAwMDAwLTAwMDAtMDAwMC0wMDAwLTExMTExMTExMTExMSIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IkFkbWluIiwicGVybWlzc2lvbnMiOlsiY3JlYXRlOnN1Ym1pc3Npb24iLCJkZWxldGU6c3VibWlzc2lvbiIsImdldDpzdWJtaXNzaW9uIl0sImV4cCI6MTc0ODE2MDEyNywiaXNzIjoiTnB1U2VydmljZSIsImF1ZCI6Ik5wdVNlcnZpY2UifQ.LdYCrsERGEBAa2jsKTneIGT5GGcu2fGOaOYWp7H04WU
+###
 
 POST {{host}}/tokens/generate
 Content-Type: application/json
@@ -36,4 +37,4 @@ Content-Type: application/json
     "roles": []
 }
 
-### eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiTm9haCIsImZhbWlseV9uYW1lIjoiS2lyayBHdWxtYW5uIiwiZW1haWwiOiJub2FoQGd1bG1hbm4uZGsiLCJpZCI6IjAwMDAwMDAwLTAwMDAtMDAwMC0wMDAwLTIyMjIyMjIyMjIyMiIsInBlcm1pc3Npb25zIjpbImNyZWF0ZTpzdWJtaXNzaW9uIiwiZGVsZXRlOnN1Ym1pc3Npb24iLCJnZXQ6c3VibWlzc2lvbiJdLCJleHAiOjE3NDgxNjAxNzAsImlzcyI6Ik5wdVNlcnZpY2UiLCJhdWQiOiJOcHVTZXJ2aWNlIn0.-BaqThcb8rbf170_kggREGKUMwyytSDzb9UK6nZADRk
+###
