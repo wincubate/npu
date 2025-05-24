@@ -1,5 +1,5 @@
 ﻿using Npu.Application.Tokens.Generate;
-using Npu.Contracts.Tokens;
+using Npu.Contracts.Tokens.Generate;
 
 namespace Npu.Api.Endpoints.Tokens.Generate;
 

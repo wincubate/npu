@@ -2,7 +2,7 @@
 using MediatR;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Npu.Application.Tokens.Generate;
-using Npu.Contracts.Tokens;
+using Npu.Contracts.Tokens.Generate;
 using Npu.Infrastructure.Security.Authorization;
 
 namespace Npu.Api.Endpoints.Tokens.Generate;

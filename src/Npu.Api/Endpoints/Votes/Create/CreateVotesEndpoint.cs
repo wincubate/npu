@@ -19,7 +19,7 @@ internal static class CreateVotesEndpoint
             .Produces(StatusCodes.Status404NotFound)
             .Produces(StatusCodes.Status409Conflict)
             .Produces(StatusCodes.Status500InternalServerError)
-            .WithOpenApi()
+            .WithOpenApi(CreateVoteOpenApi.Add)
             ;
 
     private async static Task<

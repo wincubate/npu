@@ -15,7 +15,7 @@ internal static class SearchSubmissionsEndpoint
             .WithTags(nameof(Submissions))
             .Produces(StatusCodes.Status400BadRequest)
             .Produces(StatusCodes.Status500InternalServerError)
-            .WithOpenApi()
+            .WithOpenApi(SearchSubmissionOpenApi.Add)
             ;
 
     private async static Task<

@@ -17,7 +17,7 @@ internal static class GetVotesEndpoint
             .Produces(StatusCodes.Status400BadRequest)
             .Produces(StatusCodes.Status401Unauthorized)
             .Produces(StatusCodes.Status500InternalServerError)
-            .WithOpenApi()
+            .WithOpenApi(GetVotesOpenApi.Add)
             ;
 
     private async static Task<

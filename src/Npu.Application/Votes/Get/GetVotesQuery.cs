@@ -1,9 +1,10 @@
 ﻿using Npu.Application.Common.Security.Requests;
+using Npu.Application.Common.Security.Roles;
 using Npu.Domain.Users;
 
 namespace Npu.Application.Votes.Get;
 
-[Authorize(Roles = "Admin")]
+[Authorize(Roles = RoleNames.Admin)]
 public record class GetVotesQuery : IAuthorizableRequest<GetVotesQueryResult>
 {
     public IdentityId UserId { get; init; }

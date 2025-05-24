@@ -1,9 +1,13 @@
 ﻿using Npu.Application.Common.Security.Requests;
+using Npu.Application.Common.Security.Permissions;
 using Npu.Domain.Users;
 
 namespace Npu.Application.Votes.Create;
 
-[Authorize(Policies = "NotSelf")]
+[Authorize(
+    Permissions = PermissionNames.Submission.Upload,
+    Policies = "NotSelf")
+]
 public record class CreateVoteCommand : IAuthorizableRequest<CreateVoteCommandResult>
 {
     public required IdentityId UserId { get; init; }

@@ -1,10 +1,14 @@
 ﻿using Npu.Application.Common.Persistence.Blobs;
 using Npu.Application.Common.Security.Requests;
+using Npu.Application.Common.Security.Permissions;
 using Npu.Domain.Users;
 
 namespace Npu.Application.Submissions.UploadImage;
 
-[Authorize(Policies = "SelfOrAdmin")]
+[Authorize(
+    Permissions = PermissionNames.Submission.Upload,
+    Policies = "SelfOrAdmin")
+]
 public record class UploadImageCommand :
     IAuthorizableRequest<UploadImageCommandResult>,
     IAsyncDisposable

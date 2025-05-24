@@ -17,7 +17,7 @@ internal static class UploadImageEndpoint
             .Produces(StatusCodes.Status400BadRequest)
             .Produces(StatusCodes.Status401Unauthorized)
             .Produces(StatusCodes.Status500InternalServerError)
-            .WithOpenApi()
+            .WithOpenApi(UploadImageOpenApi.Add)
             .DisableAntiforgery()
             ;
 

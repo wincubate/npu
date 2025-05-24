@@ -4,11 +4,7 @@ namespace Npu.Domain.EligibleParts;
 
 public class EligiblePart : Entity
 {
-    public EligiblePart()
-    {
-    }
-
-    public EligiblePart(Guid id) : base(id)
+    public EligiblePart() : base(Guid.CreateVersion7())
     {
     }
 

@@ -19,7 +19,7 @@ internal static class CreateSubmissionEndpoint
             .Produces(StatusCodes.Status401Unauthorized)
             .Produces(StatusCodes.Status404NotFound)
             .Produces(StatusCodes.Status500InternalServerError)
-            .WithOpenApi()
+            .WithOpenApi(CreateSubmissionOpenApi.Add)
             ;
 
     private async static Task<

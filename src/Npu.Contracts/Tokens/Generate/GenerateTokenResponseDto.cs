@@ -1,11 +1,11 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace Npu.Contracts.Tokens;
+namespace Npu.Contracts.Tokens.Generate;
 
-public record class GenerateTokenRequestDto
+public record class GenerateTokenResponseDto
 {
     [JsonPropertyName("id")]
-    public Guid? Id { get; init; }
+    public required Guid Id { get; init; }
 
     [JsonPropertyName("firstName")]
     public required string FirstName { get; init; }
@@ -16,9 +16,6 @@ public record class GenerateTokenRequestDto
     [JsonPropertyName("email")]
     public required string Email { get; init; }
 
-    [JsonPropertyName("permissions")]
-    public required IReadOnlyCollection<string> Permissions { get; init; }
-
-    [JsonPropertyName("roles")]
-    public required IReadOnlyCollection<string> Roles { get; init; }
+    [JsonPropertyName("token")]
+    public required string Token { get; init; }
 }

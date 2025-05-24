@@ -35,18 +35,19 @@
 
 ## TODO
 
-Run architecture tests: Mappers should be internal
+Remove Domain/Image as it is not used?
+Image as separate identity? (same aggregate as Submission)
+
+Swagger Upload UserId pre-filled
 
 Clean up Program.cs
 
 Remember to set token expiration back to 60 minutes. :-)
 
-Image as separate identity? (same aggregate as Submission)
-GuidGenerator for Blob and other Ids?
-
 Remove hardcoded HOST strings: 7044
 
 Clean up seeding part / connection string
+- 000000000001 and 00000000002 only
 
 Generate token examples
 
