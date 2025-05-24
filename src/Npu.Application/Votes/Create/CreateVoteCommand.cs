@@ -1,10 +1,12 @@
-﻿using MediatR;
+﻿using Npu.Application.Common.Security.Requests;
+using Npu.Domain.Users;
 
 namespace Npu.Application.Votes.Create;
 
-public record class CreateVoteCommand : IRequest<CreateVoteCommandResult>
+[Authorize(Policies = "NotSelf")]
+public record class CreateVoteCommand : IAuthorizableRequest<CreateVoteCommandResult>
 {
-    public required Guid UserId { get; init; }
+    public required IdentityId UserId { get; init; }
     public required Guid SubmissionId { get; init; }
     public required int CreativityScore { get; init; }
     public required int UniquenessScore { get; init; }

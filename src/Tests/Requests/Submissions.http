@@ -1,16 +1,19 @@
 @host = https://localhost:7044
 
-POST {{host}}/submissions/create
+POST {{host}}/users/00000000-0000-0000-0000-111111111111/submissions
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiSmVzcGVyIiwiZmFtaWx5X25hbWUiOiJHdWxtYW5uIEhlbnJpa3NlbiIsImVtYWlsIjoiamVzcGVyQGd1bG1hbm4uZGsiLCJpZCI6IjAwMDAwMDAwLTAwMDAtMDAwMC0wMDAwLTExMTExMTExMTExMSIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IkFkbWluIiwicGVybWlzc2lvbnMiOlsiY3JlYXRlOnN1Ym1pc3Npb24iLCJkZWxldGU6c3VibWlzc2lvbiIsImdldDpzdWJtaXNzaW9uIl0sImV4cCI6MTc0ODE2MDEyNywiaXNzIjoiTnB1U2VydmljZSIsImF1ZCI6Ik5wdVNlcnZpY2UifQ.LdYCrsERGEBAa2jsKTneIGT5GGcu2fGOaOYWp7H04WU
 Content-Type: application/json
 
 {
-    "userId": "00000000-0000-0000-0000-111111111111",
     "title": "NPU Example",
     "description": "Frogs as flowers on a tree",
-    "itemNumbers": [
-        "x223"
-    ]
+    "itemNumber": "x223"
 }
+
+### 00000000-0000-0000-0000-111111111111
+### 00000000-0000-0000-0000-222222222222
+
+### 019702AA-3335-7ABD-806C-08888569800F
 
 ### eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiSmVzcGVyIiwiZmFtaWx5X25hbWUiOiJHdWxtYW5uIEhlbnJpa3NlbiIsImVtYWlsIjoiamVzcGVyQGd1bG1hbm4uZGsiLCJpZCI6IlRva2VuSWQgeyBWYWx1ZSA9IDAwMDAwMDAwLTAwMDAtMDAwMC0wMDAwLTExMTExMTExMTExMSB9IiwicGVybWlzc2lvbnMiOlsiY3JlYXRlOnN1Ym1pc3Npb24iLCJkZWxldGU6c3VibWlzc2lvbiIsImdldDpzdWJtaXNzaW9uIl0sImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IkFkbWluIiwiZXhwIjoxNzQ3OTQ0ODM4LCJpc3MiOiJOcHVTZXJ2aWNlIiwiYXVkIjoiTnB1U2VydmljZSJ9.F_K_x_XhZQbZforejwViksDoOq2Cgx0Vys94PIrv_EM
 

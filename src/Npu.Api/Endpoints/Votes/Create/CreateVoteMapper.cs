@@ -1,14 +1,17 @@
 ﻿using Npu.Application.Votes.Create;
-using Npu.Contracts.Votes;
+using Npu.Contracts.Votes.Create;
 
 namespace Npu.Api.Endpoints.Votes.Create;
 
 internal static class CreateVoteMapper
 {
-    public static CreateVoteCommand MapFrom(this CreateVoteRequestDto requestDto, Guid submissionId)
+    public static CreateVoteCommand MapFrom(this CreateVoteRequestDto requestDto,
+        Guid userId, 
+        Guid submissionId
+    )
         => new()
         {
-            UserId = requestDto.UserId,
+            UserId = new(userId),
             SubmissionId = submissionId,
             CreativityScore = requestDto.CreativityScore,
             UniquenessScore = requestDto.UniquenessScore

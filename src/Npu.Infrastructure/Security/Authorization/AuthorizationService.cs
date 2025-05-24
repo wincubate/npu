@@ -23,33 +23,41 @@ internal class AuthorizationService : IAuthorizationService
         AuthorizationRequirements requirements
     )
     {
-        Principal principal = _principalProvider.GetCurrent();
-
-        if (requirements.Permissions
-            .Except(principal.Permissions)
-            .Any()
-        )
+        try
         {
-            string message = "User needs required permission to execute this use case";
-            throw new AuthorizationException(message);
-        }
+            Principal principal = _principalProvider.GetCurrent();
 
-        if (requirements.Roles
-            .Except(principal.Roles)
-            .Any()
-        )
-        {
-            string message = "User needs required role to execute this use case";
-            throw new AuthorizationException(message);
-        }
-
-        foreach (PolicyName policy in requirements.Policies)
-        {
-            if( _policyChecker.Check(request, principal, policy) is false)
+            if (requirements.Permissions
+                .Except(principal.Permissions)
+                .Any()
+            )
             {
-                string message = "User does not comply with required policy";
+                string message = "User needs required permission to execute this use case";
                 throw new AuthorizationException(message);
             }
+
+            if (requirements.Roles
+                .Except(principal.Roles)
+                .Any()
+            )
+            {
+                string message = "User needs required role to execute this use case";
+                throw new AuthorizationException(message);
+            }
+
+            foreach (PolicyName policy in requirements.Policies)
+            {
+                if (_policyChecker.Check(request, principal, policy) is false)
+                {
+                    string message = "User does not comply with required policy";
+                    throw new AuthorizationException(message);
+                }
+            }
+        }
+        catch( Exception exception)
+        {
+            string message = "Could not authorize";
+            throw new AuthorizationException(message, exception);
         }
     }
 }

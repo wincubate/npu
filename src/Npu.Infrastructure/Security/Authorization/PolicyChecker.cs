@@ -11,7 +11,8 @@ internal class PolicyChecker : IPolicyChecker
     {
         _policies = new Dictionary<string, IPolicy>()
         {
-            [PolicyNames.SelfOrAdmin] = new SelfOrAdminPolicy()
+            [PolicyNames.SelfOrAdmin] = new SelfOrAdminPolicy(),
+            [PolicyNames.NotSelf] = new NotSelfPolicy(),
         };
     }
 

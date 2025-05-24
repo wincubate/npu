@@ -1,3 +1,4 @@
+using Microsoft.OpenApi.Models;
 using Npu.Api;
 using Npu.Api.Endpoints;
 using Npu.Api.Endpoints.Swagger;
@@ -14,10 +15,34 @@ builder.Services
     ;
 
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen( options =>
+builder.Services.AddSwaggerGen(options =>
 {
     options.SupportNonNullableReferenceTypes();
     options.NonNullableReferenceTypesAsRequired();
+
+    OpenApiSecurityScheme jwtSecurityScheme = new()
+    {
+        Reference = new OpenApiReference
+        {
+            Id = "Bearer",
+            Type = ReferenceType.SecurityScheme
+        },
+
+        Scheme = "Bearer",
+        BearerFormat = "JWT",
+        Name = "JWT Authentication",
+        In = ParameterLocation.Header,
+        Type = SecuritySchemeType.Http,
+        Description = "Insert Bearer token without 'Bearer' prefix"
+    };
+
+    options.AddSecurityDefinition(jwtSecurityScheme.Reference.Id, jwtSecurityScheme);
+
+    OpenApiSecurityRequirement requirement = new()
+    {
+        { jwtSecurityScheme, [] }
+    };
+    options.AddSecurityRequirement(requirement);
 }
 );
 

@@ -33,6 +33,15 @@
 
 ## TODO
 
+Check user exists in each handler!!
+
+Clean up Program.cs
+
+Remember to set token expiration back to 60 minutes. :-)
+
+Image as separate identity? (same aggregate as Submission)
+GuidGenerator for Blob and other Ids?
+
 Remove unused usings
 
 Remove hardcoded HOST strings: 7044
@@ -43,8 +52,6 @@ Clean up seeding part / connection string
 
 Make sure that Tokens/Security types are correctly located within
 either Domain or Infrastructure (not correct now!!)
-
-TokenId vs. IdentityId
 
 Create Otel MediatR pipeline
 

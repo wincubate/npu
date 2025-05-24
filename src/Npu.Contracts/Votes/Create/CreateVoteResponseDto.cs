@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace Npu.Contracts.Votes;
+namespace Npu.Contracts.Votes.Create;
 
 public record class CreateVoteResponseDto
 {

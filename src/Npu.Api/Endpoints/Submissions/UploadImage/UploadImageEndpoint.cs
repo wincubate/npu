@@ -1,46 +1,48 @@
 ﻿using FluentValidation;
 using MediatR;
 using Microsoft.AspNetCore.Http.HttpResults;
-using Npu.Application.Votes.Create;
-using Npu.Contracts.Votes.Create;
+using Npu.Application.Submissions.UploadImage;
+using Npu.Contracts;
 using Npu.Infrastructure.Security.Authorization;
 
-namespace Npu.Api.Endpoints.Votes.Create;
+namespace Npu.Api.Endpoints.Submissions.UploadImage;
 
-internal static class CreateVotesEndpoint
+internal static class UploadImageEndpoint
 {
     internal static RouteHandlerBuilder Register(this WebApplication app)
         => app
-            .MapPost("users/{userId:guid}/submissions/{submissionId:guid}/votes", PostAsync)
-            .WithTags(nameof(Votes))
+            .MapPost("users/{userId:guid}/submissions/{submissionId:guid}/images", PostAsync)
+            .WithTags(nameof(Submissions))
             .Produces(StatusCodes.Status201Created)
             .Produces(StatusCodes.Status400BadRequest)
+            .Produces(StatusCodes.Status401Unauthorized)
             .Produces(StatusCodes.Status500InternalServerError)
             .WithOpenApi()
+            .DisableAntiforgery()
             ;
 
     private async static Task<
         Results<
-            Created<CreateVoteResponseDto>,
+            Created<UploadImageResponseDto>,
             ValidationProblem,
             UnauthorizedHttpResult,
             ProblemHttpResult
         >
     > PostAsync(
         ISender mediator,
+        IFormFile fileBeingUploaded,
         Guid userId,
         Guid submissionId,
-        CreateVoteRequestDto requestDto,
         CancellationToken cancellationToken
     )
     {
         try
         {
-            CreateVoteCommand command = requestDto.MapFrom(userId, submissionId);
-            CreateVoteCommandResult commandResult = await mediator.Send(command, cancellationToken);
-            (Uri resource, CreateVoteResponseDto responseDto) = commandResult.MapTo();
+            await using UploadImageCommand command = fileBeingUploaded.MapFrom(userId, submissionId);
+            UploadImageCommandResult commandResult = await mediator.Send(command,cancellationToken);
+            UploadImageResponseDto responseDto = commandResult.MapTo();
 
-            return TypedResults.Created(resource, responseDto);
+            return TypedResults.Created(commandResult.ImageUri.ToString(), responseDto);
         }
         catch (OperationCanceledException exception) when (exception.CancellationToken == cancellationToken)
         {

@@ -2,7 +2,7 @@
 using MediatR;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Npu.Application.Votes.Get;
-using Npu.Contracts.Votes;
+using Npu.Contracts.Votes.Get;
 using Npu.Infrastructure.Security.Authorization;
 
 namespace Npu.Api.Endpoints.Votes.Get;

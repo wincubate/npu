@@ -1,11 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace Npu.Contracts.Votes;
-
-public record class GetVotesResponseDto
-{
-    public required IReadOnlyCollection<VoteDto> Votes { get; init; }
-}
+namespace Npu.Contracts.Votes.Get;
 
 public record class VoteDto
 {

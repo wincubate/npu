@@ -30,11 +30,12 @@ public class NpuDbContext : DbContext
                 CreateUser(context, Guid.Parse("00000000-0000-0000-0000-111111111111"));
                 CreateUser(context, Guid.Parse("00000000-0000-0000-0000-222222222222"));
             })
-            .UseSeeding((context, _) =>
-             {
-                 CreateParts(context, new Part("x223", "Frog"));
-                 CreateParts(context, new Part("4073", "Plate, Round 1 x 1"));
-             });
+            ;
+            //.UseSeeding((context, _) =>
+            // {
+            //     CreateParts(context, new Part("x223", "Frog"));
+            //     CreateParts(context, new Part("4073", "Plate, Round 1 x 1"));
+            // });
     }
 
     private static void CreateUser(DbContext context, Guid newUserId)

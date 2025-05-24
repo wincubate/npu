@@ -1,12 +1,9 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace Npu.Contracts.Votes;
+namespace Npu.Contracts.Votes.Create;
 
 public record class CreateVoteRequestDto
 {
-    [JsonPropertyName("userId")]
-    public required Guid UserId { get; init; }
-
     [JsonPropertyName("creativityScore")]
     public int CreativityScore { get; init; }
 

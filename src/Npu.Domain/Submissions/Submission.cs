@@ -5,12 +5,16 @@ namespace Npu.Domain.Submissions;
 
 public class Submission : Entity
 {
-    public required Guid UserId { get; init; }
-    public required string Title { get; set; }
+    public required Guid UserId { get; init; }    
+    public required string Title { get; init; }
+    public string? Description { get; init; }
+    public Guid? ImageId { get; set; }
+    public string? ImageName { get; set; }
+    public Uri? ImageUri { get; set; }
 
     public required Guid PartId { get; set; }
 
-    public Submission()
+    public Submission() : base(Guid.CreateVersion7())
     {
     }
 
@@ -18,39 +22,14 @@ public class Submission : Entity
     public Submission(
         Guid userId,
         string title,
+        Guid? imageId, 
+        string? imageName,
         Guid? id = null
     ) : base(id ?? Guid.CreateVersion7())
     {
         UserId = userId;
         Title = title;
-    }
-}
-
-//public class SubmissionPart : Entity
-//{
-//    public required Guid SubmissionId { get; init; }
-//    public required Submission Submission { get; set; }
-//    public required Guid PartId { get; init; }
-//    public required Part Part { get; set; }
-//}
-
-public class Part : Entity
-{
-    public required string Number { get; init; }
-    public required string Name { get; init; }
-
-    public Part()
-    {
-    }
-
-    [SetsRequiredMembers]
-    public Part(
-        string number,
-        string name,
-        Guid? id = null
-    ) : base(id ?? Guid.CreateVersion7())
-    {
-        Number = number;
-        Name = name;
+        ImageId = imageId;
+        ImageName = imageName;
     }
 }

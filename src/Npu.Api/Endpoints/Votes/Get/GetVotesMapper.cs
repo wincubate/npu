@@ -1,5 +1,5 @@
 ﻿using Npu.Application.Votes.Get;
-using Npu.Contracts.Votes;
+using Npu.Contracts.Votes.Get;
 using Npu.Domain.Votes;
 
 namespace Npu.Api.Endpoints.Votes.Get;

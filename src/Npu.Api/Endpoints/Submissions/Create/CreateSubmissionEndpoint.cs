@@ -1,24 +1,21 @@
 ﻿using FluentValidation;
 using MediatR;
 using Microsoft.AspNetCore.Http.HttpResults;
-using Npu.Api.Endpoints;
 using Npu.Application.Submissions.Create;
-using Npu.Application.Tokens.Generate;
 using Npu.Contracts.Submissions;
-using Npu.Contracts.Tokens;
 using Npu.Infrastructure.Security.Authorization;
-using System.Threading;
 
-namespace Npu.Api.Endpoints.Submissions;
+namespace Npu.Api.Endpoints.Submissions.Create;
 
 internal static class CreateSubmissionEndpoint
 {
     internal static RouteHandlerBuilder Register(this WebApplication app)
         => app
-            .MapPost("/submissions/create", PostAsync)
+            .MapPost("users/{userId:guid}/submissions", PostAsync)
             .WithTags(nameof(Submissions))
             .Produces(StatusCodes.Status201Created)
             .Produces(StatusCodes.Status400BadRequest)
+            .Produces(StatusCodes.Status401Unauthorized)
             .Produces(StatusCodes.Status500InternalServerError)
             .WithOpenApi()
             ;
@@ -31,27 +28,20 @@ internal static class CreateSubmissionEndpoint
             ProblemHttpResult
         >
     > PostAsync(
+        IHttpContextAccessor httpContextAccessor,
         ISender mediator,
+        Guid userId,
         CreateSubmissionRequestDto requestDto,
         CancellationToken cancellationToken
     )
     {
         try
         {
-            CreateSubmissionCommand command = requestDto.MapFrom();
+            CreateSubmissionCommand command = requestDto.MapFrom(userId);
             CreateSubmissionCommandResult commandResult = await mediator.Send(command, cancellationToken);
-            CreateSubmissionResponseDto responseDto = commandResult.MapTo();
-
-            string resource = "https://localhost:7044/submission/xyz";
+            (string resource, CreateSubmissionResponseDto responseDto) = commandResult.MapTo(httpContextAccessor.HttpContext);
 
             return TypedResults.Created(resource, responseDto);
-
-            //CreateSubmissionResponseDto responseDto = new()
-            //{
-            //    Id = "xyz",
-            //    CreatedTime = DateTimeOffset.Now
-            //};
-            //return TypedResults.Created(resource, responseDto);
         }
         catch (OperationCanceledException exception) when (exception.CancellationToken == cancellationToken)
         {
