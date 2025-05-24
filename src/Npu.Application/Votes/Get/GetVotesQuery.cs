@@ -3,7 +3,7 @@ using Npu.Domain.Users;
 
 namespace Npu.Application.Votes.Get;
 
-[Authorize(Roles = "Admin")]
+[Authorize(Policies = "NotSelf")]
 public record class GetVotesQuery : IAuthorizableRequest<GetVotesQueryResult>
 {
     public IdentityId UserId { get; init; }

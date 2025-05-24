@@ -1,7 +1,7 @@
 @host = https://localhost:7044
 
 POST {{host}}/submissions/0196fdc5-cd8e-7f7a-8ba4-adbbe684848b/votes
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiSmVzcGVyIiwiZmFtaWx5X25hbWUiOiJHdWxtYW5uIEhlbnJpa3NlbiIsImVtYWlsIjoiamVzcGVyQGd1bG1hbm4uZGsiLCJpZCI6IlRva2VuSWQgeyBWYWx1ZSA9IDAwMDAwMDAwLTAwMDAtMDAwMC0wMDAwLTExMTExMTExMTExMSB9IiwicGVybWlzc2lvbnMiOlsiY3JlYXRlOnN1Ym1pc3Npb24iLCJkZWxldGU6c3VibWlzc2lvbiIsImdldDpzdWJtaXNzaW9uIl0sImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IkFkbWluIiwiZXhwIjoxNzQ4MDMzMjM1LCJpc3MiOiJOcHVTZXJ2aWNlIiwiYXVkIjoiTnB1U2VydmljZSJ9.0PUpK13BQJhJC-jOIJUrwpAhtHWoVH4pT1tr2p7K2Ag
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiSmVzcGVyIiwiZmFtaWx5X25hbWUiOiJHdWxtYW5uIEhlbnJpa3NlbiIsImVtYWlsIjoiamVzcGVyQGd1bG1hbm4uZGsiLCJpZCI6IjAwMDAwMDAwLTAwMDAtMDAwMC0wMDAwLTExMTExMTExMTExMSIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IkFkbWluIiwicGVybWlzc2lvbnMiOlsiY3JlYXRlOnN1Ym1pc3Npb24iLCJkZWxldGU6c3VibWlzc2lvbiIsImdldDpzdWJtaXNzaW9uIl0sImV4cCI6MTc0ODA3MzcwMywiaXNzIjoiTnB1U2VydmljZSIsImF1ZCI6Ik5wdVNlcnZpY2UifQ.i6xfy-jBUpHOrYTk2HUWKJ8t_VAAOF9FJRWjclufF9Y
 Content-Type: application/json
 
 {
@@ -9,6 +9,20 @@ Content-Type: application/json
     "creativityScore": "5",
     "uniquenessScore": "4"
 }
+
+###
+
+POST {{host}}/submissions/0196fdc5-cd8e-7f7a-8ba4-adbbe684848b/votes
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiTm9haCIsImZhbWlseV9uYW1lIjoiS2lyayBHdWxtYW5uIiwiZW1haWwiOiJub2FoQGd1bG1hbm4uZGsiLCJpZCI6IjAwMDAwMDAwLTAwMDAtMDAwMC0wMDAwLTIyMjIyMjIyMjIyMiIsInBlcm1pc3Npb25zIjpbImNyZWF0ZTpzdWJtaXNzaW9uIiwiZGVsZXRlOnN1Ym1pc3Npb24iLCJnZXQ6c3VibWlzc2lvbiJdLCJleHAiOjE3NDgwNzM3ODMsImlzcyI6Ik5wdVNlcnZpY2UiLCJhdWQiOiJOcHVTZXJ2aWNlIn0.a0nGULv5Hzgp4E1YK7XFEDLoNQQ52ElreuU_iCe08BU
+Content-Type: application/json
+
+{
+    "userId": "00000000-0000-0000-0000-222222222222",
+    "creativityScore": "2",
+    "uniquenessScore": "5"
+}
+
+
 
 ### Admin-only
 GET {{host}}/users/00000000-0000-0000-0000-111111111111/submissions/0196fdc5-cd8e-7f7a-8ba4-adbbe684848b/votes
