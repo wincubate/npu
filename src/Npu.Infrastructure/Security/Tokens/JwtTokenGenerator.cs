@@ -54,8 +54,8 @@ internal class JwtTokenGenerator : IJwtTokenGenerator
             _jwtSettings.Issuer,
             _jwtSettings.Audience,
             claims
-                .Union(permissionClaims)
-                .Union(roleClaims),
+                .Union(roleClaims)
+                .Union(permissionClaims),
             expires: _dateTimeOffsetProvider.UtcNow.AddMinutes(_jwtSettings.TokenExpirationInMinutes),
             signingCredentials: credentials
         );

@@ -1,0 +1,47 @@
+@host = https://localhost:7044
+
+POST {{host}}/tokens/generate
+Content-Type: application/json
+
+{
+    "id": "00000000-0000-0000-0000-111111111111",
+    "firstName": "Jesper",
+    "lastName": "Gulmann Henriksen",
+    "email": "jesper@gulmann.dk",
+    "permissions": [
+        "create:submission",
+        "upload:submission",
+        "get:submission",
+        "delete:submission",
+        "create:vote",
+        "get:vote",
+        "delete:vote"
+    ],
+    "roles": [
+        "Admin"
+    ]
+}
+
+###
+
+POST {{host}}/tokens/generate
+Content-Type: application/json
+
+{
+    "id": "00000000-0000-0000-0000-222222222222",
+    "firstName": "Noah",
+    "lastName": "Kirk Gulmann",
+    "email": "noah@gulmann.dk",
+    "permissions": [
+        "create:submission",
+        "upload:submission",
+        "get:submission",
+        "delete:submission",
+        "create:vote",
+        "get:vote",
+        "delete:vote"
+    ],
+    "roles": []
+}
+
+###

@@ -1,5 +1,6 @@
 ﻿using Azure.Identity;
 using Azure.Storage.Blobs;
+using Azure.Storage.Blobs.Models;
 using Microsoft.Extensions.Options;
 using Npu.Application.Common.Persistence.Blobs;
 
@@ -14,7 +15,7 @@ internal class AzureBlobRepository : IBlobRepository
         _options = options.Value;
     }
 
-    public async Task AddAsync(Blob blob, CancellationToken cancellationToken)
+    public async Task<Uri> AddAsync(Blob blob, CancellationToken cancellationToken)
     {
         BlobServiceClient blobServiceClient = new(
             _options.StorageAccountUri,
@@ -24,6 +25,29 @@ internal class AzureBlobRepository : IBlobRepository
         BlobContainerClient containerClient =
             blobServiceClient.GetBlobContainerClient(_options.ContainerName);
 
-        _ = await containerClient.UploadBlobAsync(blob.Name, blob.Stream, cancellationToken);
+        string storedFileName = blob.StoredFileName;
+        _ = await containerClient.UploadBlobAsync(storedFileName, blob.Stream, cancellationToken);
+            
+        Uri imageUri = new(
+            containerClient.Uri,
+            Path.Combine(
+                _options.ContainerName,
+                storedFileName
+            )
+        );
+        return imageUri;
+    }
+
+    public async Task RemoveById(BlobId blobId, CancellationToken cancellationToken)
+    {
+        BlobServiceClient blobServiceClient = new(
+            _options.StorageAccountUri,
+            new DefaultAzureCredential()
+        );
+
+        BlobContainerClient containerClient =
+            blobServiceClient.GetBlobContainerClient(_options.ContainerName);
+
+        _ = await containerClient.DeleteBlobIfExistsAsync(blobId, cancellationToken: cancellationToken);
     }
 }

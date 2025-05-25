@@ -37,7 +37,7 @@ internal class PrincipalProvider : IPrincipalProvider
 
             IReadOnlyCollection<Permission> permissions = [..GetClaimValues(httpContext, "permissions")
                 .Select(Permission.Parse)];
-            IReadOnlyCollection<Role> roles = [..GetClaimValues(httpContext, "roles")
+            IReadOnlyCollection<Role> roles = [..GetClaimValues(httpContext, ClaimTypes.Role)
                 .Select(Role.Parse)];
 
             return new Principal(identity, permissions, roles);

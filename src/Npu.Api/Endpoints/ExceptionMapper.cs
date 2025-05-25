@@ -1,5 +1,6 @@
 ﻿using FluentValidation;
 using Microsoft.AspNetCore.Http.HttpResults;
+using Npu.Domain.Exceptions;
 using Npu.Infrastructure.Security.Authorization;
 
 namespace Npu.Api.Endpoints;
@@ -28,6 +29,12 @@ internal static class ExceptionMapper
 
     public static UnauthorizedHttpResult MapTo401(this AuthorizationException exception) =>
         TypedResults.Unauthorized();
+
+    public static NotFound<string> MapTo404(this NotFoundException exception) =>
+        TypedResults.NotFound(exception.Message);
+
+    public static Conflict<string> MapTo409(this AlreadyExistsException exception) =>
+        TypedResults.Conflict<string>(exception.Message);
 
     public static ProblemHttpResult MapTo500(this Exception exception) =>
         TypedResults.Problem(

@@ -1,6 +1,0 @@
-@Npu.MinimalApi_HostAddress = http://localhost:5111
-
-GET {{Npu.MinimalApi_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###

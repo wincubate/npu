@@ -8,7 +8,7 @@ internal class SelfOrAdminPolicy : IPolicy
     public bool Check<T>(IAuthorizableRequest<T> request, Principal principal)
     {
         if( request.UserId == principal.Identity.Id ||
-            principal.Roles.Contains(Roles.Admin))
+            principal.Roles.Contains(Role.Admin))
         {
             return true;
         }

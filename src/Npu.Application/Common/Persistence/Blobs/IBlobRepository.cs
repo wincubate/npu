@@ -2,5 +2,6 @@
 
 public interface IBlobRepository
 {
-    Task AddAsync(Blob blob, CancellationToken cancellationToken);
+    Task<Uri> AddAsync(Blob blob, CancellationToken cancellationToken);
+    Task RemoveById(BlobId blobId, CancellationToken cancellationToken);
 }
