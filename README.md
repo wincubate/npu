@@ -87,18 +87,6 @@ the following are needed:
 - Azure Blob Storage used (could be AWS S3 or similar, but have no AWS subscription :-) )
 - Parts List currently hardcoded, but should be imported / synchronized from external source / Cached
 - For simplicity: Only a single part per submission. If there was a bit more time: one-to-many
+- For simplicity: Image + Part denormalized into Submission. If there was a bit more time: one-to-many and separate entities
 - No unit tests... ;-)
 - But a few architecture tests because concept is quite important
-
-## TODO
-
-Remove Domain/Image as it is not used?
-Image as separate identity? (same aggregate as Submission)
-
-Remove hardcoded HOST strings: 7044
-
-Clean up seeding part / connection string
-
-EF Core missing Foreign Keys?
-
-... 

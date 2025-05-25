@@ -24,4 +24,12 @@ internal class VotesRepository : IVotesRepository
             .Where(vote => vote.SubmissionId == submissionId)
             .ToArrayAsync(cancellationToken: cancellationToken)
             ;
+
+    public async Task<bool> ExistsForUserIdAndSubmissionIdAsync(Guid userId, Guid submissionId, CancellationToken cancellationToken) =>
+        await _context.Votes
+            .AnyAsync(
+                vote => vote.UserId == userId && vote.SubmissionId == submissionId, 
+                cancellationToken
+            )
+            ;
 }
