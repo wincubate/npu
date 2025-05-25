@@ -5,7 +5,7 @@ using Npu.Domain.Users;
 namespace Npu.Application.Votes.Create;
 
 [Authorize(
-    Permissions = PermissionNames.Submission.Upload,
+    Permissions = PermissionNames.Vote.Create,
     Policies = "NotSelf")
 ]
 public record class CreateVoteCommand : IAuthorizableRequest<CreateVoteCommandResult>
