@@ -4,31 +4,29 @@ using Npu.Application.Common.Persistence.Submissions;
 using Npu.Application.Common.Time;
 using Npu.Domain.Exceptions;
 using Npu.Domain.Submissions;
-using System.Reflection.PortableExecutable;
-using System.Security.Cryptography.X509Certificates;
 
 namespace Npu.Application.Submissions.UploadImage;
 
 internal class UploadImageHandler : IRequestHandler<UploadImageCommand, UploadImageCommandResult>
 {
-    private readonly ISubmissionsRepository _submissionRepository;
+    private readonly ISubmissionsRepository _submissionsRepository;
     private readonly IBlobRepository _blobRepository;
     private readonly IDateTimeOffsetProvider _dateTimeOffsetProvider;
 
     public UploadImageHandler(
-        ISubmissionsRepository submissionRepository,
+        ISubmissionsRepository submissionsRepository,
         IBlobRepository blobRepository,
         IDateTimeOffsetProvider dateTimeOffsetProvider
     )
     {
-        _submissionRepository = submissionRepository;
+        _submissionsRepository = submissionsRepository;
         _blobRepository = blobRepository;
         _dateTimeOffsetProvider = dateTimeOffsetProvider;
     }
 
     public async Task<UploadImageCommandResult> Handle(UploadImageCommand command, CancellationToken cancellationToken)
     {
-        Submission? submission = await _submissionRepository.GetByIdAsync(command.SubmissionId, cancellationToken);
+        Submission? submission = await _submissionsRepository.GetByIdAsync(command.SubmissionId, cancellationToken);
         if (submission is null)
         {
             string message = "Submission not found";
@@ -43,11 +41,15 @@ internal class UploadImageHandler : IRequestHandler<UploadImageCommand, UploadIm
 
         Uri imageUri = await _blobRepository.AddAsync(command.Blob, cancellationToken);
 
-        submission.ImageId = command.Blob.Id.Value;
-        submission.ImageName = command.Blob.OriginalFileName;
-        submission.ImageUri = imageUri;
+        SubmissionImage image = new()
+        {
+            Id = command.Blob.Id.Value,
+            Name = command.Blob.OriginalFileName,
+            Uri = imageUri
+        };
+        submission.SetImage(image);
 
-        await _submissionRepository.UpdateAsync(submission, cancellationToken);
+        await _submissionsRepository.UpdateAsync(submission, cancellationToken);
 
         return new()
         {

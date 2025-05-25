@@ -18,4 +18,11 @@ public class Submission : Entity
     public Submission() : base(Guid.CreateVersion7())
     {
     }
+
+    public void SetImage(SubmissionImage image)
+    {
+        ImageId = image.Id;
+        ImageName = image.Name;
+        ImageUri = image.Uri;
+    }
 }
