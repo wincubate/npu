@@ -30,13 +30,15 @@ As there is no IdP for testing purposes we can generate JWT bearer ourselves (to
 ### 2. Create Submission for User
 `POST users/{userId}/submissions`
 
-Permissions required: `submission:create`
+Permissions required: `create:submission`
+
 Policies required: User or Admin
 
 ### 3. Upload Image to Submission
 `POST users/{userId}/submissions/{submissionId}/images`
 
 Permissions required: `upload:submission`
+
 Policies required: User or Admin
 
 ### 4. Search Submissions for Item Name
@@ -49,6 +51,7 @@ Unauthenticated.
 `POST users/{userId}/submissions/{submissionId}/votes`
 
 Permissions required: `create:vote`
+
 Policies required: Not Own User
 
 ### 6. Get Votes for Submission
@@ -56,6 +59,7 @@ Policies required: Not Own User
 `GET users/{userId}/submissions/{submissionId}/votes`
 
 Permissions required: None
+
 Policies required: Admin
 
 
