@@ -28,6 +28,7 @@ internal static class SearchSubmissionsMapper
             Description = submission.Description,
             ImageName = submission.ImageName,
             ImageId = submission.ImageId,
+            ImageUri = submission.ImageUri,
             PartId = submission.PartId,
             BrickLinkItemNumber = submission.BrickLinkItemNumber,
             PartName = submission.PartName            
